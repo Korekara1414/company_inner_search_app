@@ -39,13 +39,23 @@ logger = logging.getLogger(ct.LOGGER_NAME)
 try:
     # 初期化処理（「initialize.py」の「initialize」関数を実行）
     initialize()
-except Exception as e:
+#except Exception as e:
     # エラーログの出力
-    logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
+  #  logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
     # エラーメッセージの画面表示
-    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
+  #  st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
     # 後続の処理を中断
+  #  st.stop()
+
+#追加20260329
+except Exception as e:
+    logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
+
+    st.error("初期化エラーが発生しました")
+    st.exception(e)
+
     st.stop()
+
 
 # アプリ起動時のログファイルへの出力
 if not "initialized" in st.session_state:
